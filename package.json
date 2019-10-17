@@ -1,0 +1,28 @@
+{
+   "name": "nth-risk-api",
+   "version": "0.0.1",
+   "description": "API Risk Nonthai-Hospital",
+   "devDependencies": {
+      "ts-node": "3.3.0",
+      "@types/node": "^8.0.29",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "body-parser": "^1.18.1",
+      "class-validator": "^0.10.2",
+      "cors": "^2.8.5",
+      "express": "^4.15.4",
+      "helmet": "^3.21.1",
+      "jsonwebtoken": "^8.5.1",
+      "mysql2": "^1.7.0",
+      "reflect-metadata": "^0.1.10",
+      "ts-node-dev": "^1.0.0-pre.43",
+      "typeorm": "0.2.19"
+   },
+   "scripts": {
+      "tsc": "tsc",
+      "start": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/index.ts",
+      "prod": "tsc && node ./build/app.js"
+   }
+}
