@@ -36,9 +36,9 @@ class ManagerController{
 
   static newManager = async (req: Request, res: Response) => {
     //Get parameters from the body
-    let { userId, isActive } = req.body;
+    let { username, isActive } = req.body;
     let r_manager = new RManager();
-    r_manager.userId = userId;
+    r_manager.username = username;
     r_manager.isActive = isActive;
 
     //Validade if the parameters are ok
@@ -68,7 +68,7 @@ class ManagerController{
     const id = req.params.id;
 
     //Get values from the body
-    const { userId, isActive } = req.body;
+    const { username, isActive } = req.body;
 
     //Try to find manager on database
     const managerRepository = getRepository(RManager);
@@ -82,7 +82,7 @@ class ManagerController{
     }
 
     //Validate the new values on model
-    r_manager.userId = userId;
+    r_manager.username = username;
     r_manager.isActive = isActive;
     const errors = await validate(r_manager);
     if (errors.length > 0) {
