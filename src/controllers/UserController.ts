@@ -27,9 +27,7 @@ class UserController{
     //Get the user from database
     const userRepository = getRepository(RUser);
     try {
-      const user = await userRepository.findOneOrFail(id, {
-        select: ["id", "username", "role"] //We dont want to send the password on response
-      });
+      const user = await userRepository.findOneOrFail(id, { relations: ["department", "department.workgroup"] });
 
       res.send(user);
     } catch (error) {
@@ -72,7 +70,8 @@ class UserController{
     }
 
     //If all ok, send 201 response
-    res.status(201).send("User created");
+    //res.status(201).send("User created");
+    res.status(201).send({ status: 201, results: "User created" });
   };
 
 
@@ -82,8 +81,9 @@ class UserController{
     const id = req.params.id;
 
     //Get values from the body
-    const { username, role } = req.body;
+    const { username, password, email, department, role, isActive } = req.body;
 
+    
     //Try to find user on database
     const userRepository = getRepository(RUser);
     let user;
@@ -97,7 +97,17 @@ class UserController{
 
     //Validate the new values on model
     user.username = username;
+    
+    if(typeof password !== 'undefined'){
+      user.password = password;
+      user.hashPassword();
+    }
+   
+    user.email = email;
+    user.department = department;
     user.role = role;
+    user.isActive = isActive;
+   
     const errors = await validate(user);
     if (errors.length > 0) {
       res.status(400).send(errors);
@@ -112,7 +122,8 @@ class UserController{
       return;
     }
     //After all send a 204 (no content, but accepted) response
-    res.status(204).send();
+    //res.status(204).send();
+    res.send({ status: 204});
   };
 
 

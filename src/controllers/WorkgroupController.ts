@@ -58,7 +58,8 @@ class WorkgroupController{
     }
 
     //If all ok, send 201 response
-    res.status(201).send("workgroup created");
+    //res.status(201).send("workgroup created");
+    res.status(201).send({ status: 201, results: "workgroup created" });
   };
 
 
@@ -98,7 +99,8 @@ class WorkgroupController{
       return;
     }
     //After all send a 204 (no content, but accepted) response
-    res.status(204).send();
+    //res.status(204).send();
+    res.send({ status: 204});
   };
 
 

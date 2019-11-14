@@ -23,7 +23,7 @@ router.post("/", [checkJwt, checkRole(["ADMIN"])], ManagerController.newManager)
 
 
 //Edit one manager
-router.patch(
+router.put(
 "/:id([0-9]+)",
 [checkJwt, checkRole(["ADMIN"])],
 ManagerController.editManager

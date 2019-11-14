@@ -23,6 +23,11 @@ class AuthController {
       res.status(401).send();
     }
 
+    if(user.isActive === false) {
+      res.status(401).send();
+      return;
+    }
+
     //Check if encrypted password match
     if (!user.checkIfUnencryptedPasswordIsValid(password)) {
       res.status(401).send();
@@ -31,13 +36,22 @@ class AuthController {
 
     //Sing JWT, valid for 1 hour
     const token = jwt.sign(
-      { userId: user.id, username: user.username },
+      { userId: user.id, 
+        username: user.username,
+        fullname: user.fullname,
+        role: user.role
+      },
       config.jwtSecret,
-      { expiresIn: "1h" }
+      { expiresIn: "6h" }
     );
 
     //Send the jwt in the response
-    res.send(token);
+    //res.send(token);
+    res.json({
+      ok: true,
+      message: 'เข้าสู่ระบบสำเร็จ',
+      token: token
+    })
   };
 
   static changePassword = async (req: Request, res: Response) => {

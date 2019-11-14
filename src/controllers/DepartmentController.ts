@@ -59,7 +59,8 @@ class DepartmentController{
     }
 
     //If all ok, send 201 response
-    res.status(201).send("department created");
+    //res.status(201).send("department created");
+    res.status(201).send({ status: 201, results: "department created" });
   };
 
 
@@ -100,7 +101,8 @@ class DepartmentController{
       return;
     }
     //After all send a 204 (no content, but accepted) response
-    res.status(204).send();
+    //res.status(204).send();
+    res.send({ status: 204});
   };
 
 

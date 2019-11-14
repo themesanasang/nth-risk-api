@@ -23,7 +23,7 @@ UserController.getOneById
 router.post("/", [checkJwt, checkRole(["ADMIN"])], UserController.newUser);
 
 //Edit one user
-router.patch(
+router.put(
 "/:id([0-9]+)",
 [checkJwt, checkRole(["ADMIN"])],
 UserController.editUser

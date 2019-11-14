@@ -23,7 +23,7 @@ router.post("/", [checkJwt, checkRole(["ADMIN"])], DepartmentController.newDepar
 
 
 //Edit one department
-router.patch(
+router.put(
 "/:id([0-9]+)",
 [checkJwt, checkRole(["ADMIN"])],
 DepartmentController.editDepartment

@@ -23,7 +23,7 @@ router.post("/", [checkJwt, checkRole(["ADMIN"])], WorkgroupController.newWorkgr
 
 
 //Edit one workgroup
-router.patch(
+router.put(
 "/:id([0-9]+)",
 [checkJwt, checkRole(["ADMIN"])],
 WorkgroupController.editWorkgroup

@@ -23,7 +23,7 @@ router.post("/", [checkJwt, checkRole(["ADMIN"])], RiskLevelController.newRiskLe
 
 
 //Edit one risklevel
-router.patch(
+router.put(
 "/:id([0-9]+)",
 [checkJwt, checkRole(["ADMIN"])],
 RiskLevelController.editRiskLevel
